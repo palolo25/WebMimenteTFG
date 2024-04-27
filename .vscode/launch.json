@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MimenteApplication<mimente>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "web.com.mimente.mimente.MimenteApplication",
+            "projectName": "mimente",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
