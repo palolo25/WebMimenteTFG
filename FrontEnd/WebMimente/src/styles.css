@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
+    /* Colors */
+    --brandgreen:#00AF8D;
+    --lightblue:#EAFCFC;
+    --middleblue:#CFEBF9;
+    --blue:#2C3F4E;
+    --brown:#7A3909;
+    --red:#E33115;
+    --orange:#F48D1C;
     /* Fonts */
     --links-font-family: Spline Sans, sans-serif;
     --links-font-size: 1.875rem;
@@ -8,12 +16,12 @@
     --links-font-weight: 400;
     --links-font-style: normal;
     --largetitle-font-family: EB Garamond, sans-serif;
-    --largetitle-font-size: 11.25rem;
+    --largetitle-font-size: 7rem;
     --largetitle-line-height: normal;
     --largetitle-font-weight: 700;
     --largetitle-font-style: normal;
     --title-font-family: EB Garamond, sans-serif;
-    --title-font-size: 7.5rem;
+    --title-font-size: 4rem;
     --title-line-height: normal;
     --title-font-weight: 700;
     --title-font-style: normal;
