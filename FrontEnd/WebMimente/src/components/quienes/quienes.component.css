@@ -1,0 +1,92 @@
+.mission{
+    background-color: var(--lightblue);
+    display: flex;
+    padding: 5%;
+    gap: 3%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;                                                                     
+}
+.cheroes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ttitle{
+    color: var(--brandgreen);
+    font-family: var(--title-font-family);
+    font-size: var(--title-font-size);
+    font-weight: var(--title-font-weight);
+    padding-bottom: 5%;
+}
+.cmissions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cheroe{
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    gap: 3rem;
+}
+.imgheroe{
+    max-height: 400px;
+
+}
+.tmission,.tsubtitle{
+    color: black;
+    font-family: var(--subtitle-font-family);
+    font-size: var(--subtitle-font-size);
+    text-align: justify;
+}
+.cteam{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ctitleteam{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5%;
+}
+.cteam-bios{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+.cteam-bio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+.imgteam{
+    max-width: 80px;
+    max-height: 80px;
+}
+.cbio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+.ctitle-bio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tname{
+    color: black;
+    font-family: var(--subtitle-font-family);
+    font-size: var(--subtitle-font-size);
+    font-weight: 700;
+}
+.tbio{
+    color: black;
+    font-family: var(--smalltext-font-family);
+    font-size: var(--smalltext-font-size);
+}
