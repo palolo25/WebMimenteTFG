@@ -38,6 +38,7 @@
     width: auto;
     height: auto;
     position: relative;
+    cursor: pointer;
   }
   .imglogo{
     padding: 2rem;

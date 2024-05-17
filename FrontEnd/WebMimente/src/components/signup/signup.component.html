@@ -6,9 +6,13 @@
     <div class="csign">
         <div class="clogin">
             <div class="ttitle">
-                Iniciar Sesión
+                Registro
             </div>
-            <form (submit)="login()">
+            <form (submit)="signup()">
+                <div class="mb-3">
+                <label for="InputName" class="form-label">Nombre:</label>
+                <input type="name" class="form-control" aria-describedby="nameHelp" id="username" name="username" [(ngModel)]="username" required>
+                </div>
                 <div class="mb-3">
                 <label for="InputEmail" class="form-label">Email:</label>
                 <input type="email" class="form-control" aria-describedby="emailHelp" id="email" name="email" [(ngModel)]="email" required>
@@ -17,9 +21,15 @@
                 <label for="InputPassword" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <div class="form-check form-check-reverse">
+                <input class="form-check-input" type="checkbox" value="false" id="professional-signup" [(ngModel)]="professional">
+                <label class="form-check-label" for="reverseCheck1">
+                    Soy un profesional de la salud mental
+                </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Resgistrarse</button>
             </form>
-            <button class="btn btn-secondary" [routerLink]="['/signup']">Resgistrarse</button>
+            <button class="btn btn-secondary" [routerLink]="['/login']">Iniciar Sesión</button>
         </div>
     </div>
     <app-footer></app-footer>
