@@ -1,0 +1,16 @@
+<div class="navbar">
+    <div class="cnavlogo" routerLink="/home">
+        <img class="imglogo" src="assets/img/LogoGrand.svg" alt="Logo Mimente" />
+    </div>
+    <div class="cmenu">
+        <button class="button" id="appointment" type="button" [routerLink]="['/account/search']">
+            Concertar Cita
+        </button>
+        <button class="button" id="account" type="button" [routerLink]="['/account']">
+            Mi Cuenta
+        </button>
+        <button class="button" id="logout" type="button" onclick="logout">
+            Cerrar Sesión
+        </button>
+    </div>
+</div> 

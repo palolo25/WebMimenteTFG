@@ -17,7 +17,7 @@
                 <label for="InputPassword" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary" [routerLink]="['/account']">Iniciar Sesión</button>
             </form>
             <button class="btn btn-secondary" [routerLink]="['/signup']">Resgistrarse</button>
         </div>
