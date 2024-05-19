@@ -1,5 +1,8 @@
 package web.com.mimente.mimente.repository;
 
-public interface DateRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import web.com.mimente.mimente.entity.DateEntity;
+
+public interface DateRepository extends JpaRepository<DateEntity,Long> {
 
 }
