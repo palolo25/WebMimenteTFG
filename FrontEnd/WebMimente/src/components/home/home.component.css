@@ -1,6 +1,30 @@
 body{
   margin: 0px;
 }
+#main{
+  background: var(--brandgreen);
+  color: #ffffff;
+}
+#secondary{
+  background: var(--middleblue);
+}
+.button {
+  font-family: "Spline Sans", sans-serif;
+  border-radius: 1.5rem;
+  padding: 1.625rem 3rem 1.625rem 3rem;
+  position: relative;
+  border-style: none;
+  font-size: var(--links-font-size);
+  transition: 0.5s;
+  display: flex;
+  flex-wrap: wrap;
+}
+.button:hover{
+cursor: pointer;
+box-shadow: 0 5px 15px -8px rgba(0, 0, 0,.8);
+transition: 0.5s;
+transform: translateY(-0.25em);
+}
 /*Section 1*/
 .home *{
   box-sizing: border-box;

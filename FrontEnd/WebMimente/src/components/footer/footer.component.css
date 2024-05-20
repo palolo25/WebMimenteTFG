@@ -85,6 +85,10 @@
     align-items: center;
     justify-content: flex-start;
   }
+  .lfooter:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
   .divider,imgdivider {
     opacity: 2;
     flex: 1;
@@ -131,4 +135,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+  }
+  .lterms:hover{
+    text-decoration: underline;
+    cursor: pointer;
   }
