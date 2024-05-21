@@ -8,6 +8,7 @@ import {AccountComponent} from '../components/account/account.component';
 import {SearchComponent} from '../components/search/search.component';
 import { SignupComponent } from '../components/signup/signup.component';
 import { DetailsComponent } from '../components/details/details.component';
+import { NewpasswordComponent } from '../components/newpassword/newpassword.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'account', component: AccountComponent },
     { path: 'account/search', component: SearchComponent },
     { path: 'account/search/details', component: DetailsComponent },
+    { path: 'account/newpassword', component: NewpasswordComponent },
 
 
 ];

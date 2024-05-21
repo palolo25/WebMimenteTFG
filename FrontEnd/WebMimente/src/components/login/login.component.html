@@ -8,17 +8,19 @@
             <div class="ttitle">
                 Iniciar Sesión
             </div>
-            <form (submit)="login()">
+            <form (submit)="signIn()">
                 <div class="mb-3">
                 <label for="InputEmail" class="form-label">Email:</label>
-                <input type="email" class="form-control" aria-describedby="emailHelp" id="email" name="email" [(ngModel)]="email" required>
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
                 </div>
                 <div class="mb-3">
                 <label for="InputPassword" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary" [routerLink]="['/account']">Iniciar Sesión</button>
+                <a href="javascript:void(0)" (click)="openRecoveryModal()">Recuperar contraseña</a>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </form>
+            <app-passrecoverymodal></app-passrecoverymodal>
             <button class="btn btn-secondary" [routerLink]="['/signup']">Resgistrarse</button>
         </div>
     </div>

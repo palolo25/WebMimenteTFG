@@ -1,0 +1,54 @@
+.caccount{
+    background-color: var(--lightblue);
+    display: flex;
+    flex-direction: column;
+}
+img{
+    min-width: 200px;
+    min-height: 200px;
+    max-height: 1000px;
+    max-width: 1000px;
+}
+.cuserdata{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin: 10%
+}
+.cuserinfo{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+.title{
+    font-family: var(--subtitle-font-family);
+    font-size: var(--smalltext-font-size);
+}
+.subtitle{
+    font-family: var(--subtitle-font-family);
+    font-size: var(--smalltext-font-size);
+    font-weight: 700;
+
+}
+.cappointments{
+    margin: 10%
+}
+.button {
+    background-color: var(--middleblue);
+    font-family: "Spline Sans", sans-serif;
+    border-radius: 1.5rem;
+    padding: 1.625rem 3rem 1.625rem 3rem;
+    position: relative;
+    border-style: none;
+    font-size: var(--links-font-size);
+    transition: 0.5s;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+.button:hover{
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+  transition: 0.5s;
+  transform: translateY(-0.25em);
+}

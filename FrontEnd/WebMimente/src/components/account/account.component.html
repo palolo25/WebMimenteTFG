@@ -5,27 +5,31 @@
 <body>
     <app-accnavbar></app-accnavbar>
     <div class="caccount">
-        <div class="cimgavatar">
-            <img/>
+        <div class="cuserdata">
+            <div class="cimgavatar">
+            <img [src]="imgprofile" alt="User Avatar" />
         </div>
         <div class="cuserinfo">
             <label class="title" id="name"> Nombre: 
-                <label class="subtitle" id="username"></label>
+                <label class="subtitle" id="name">{{ name }}</label>
             </label>
             <label class="title" id="email"> Email: 
-                <label class="subtitle" id="useremail"></label>
+                <label class="subtitle" id="email">{{ email }}</label>
             </label>
-            <button class="button" id="edit" type="button" onclick="editData">
+            <button class="button" id="edit" type="button" (click)="editData()">
                 Editar Datos
             </button>
+            <div *ngIf="alerterror" class="alert alert-danger" role="alert">
+                {{ alerterror }}
+            </div>
         </div>
-        <div class="cappointment">
+        </div>
+        <div class="cappointments">
             <div class="table">
-                
+                <p>Table</p>
             </div>
         </div>
     </div>
-
 </body>
 <footer>
     <app-footer></app-footer>
