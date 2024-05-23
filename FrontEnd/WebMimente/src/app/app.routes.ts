@@ -9,6 +9,7 @@ import {SearchComponent} from '../components/search/search.component';
 import { SignupComponent } from '../components/signup/signup.component';
 import { DetailsComponent } from '../components/details/details.component';
 import { NewpasswordComponent } from '../components/newpassword/newpassword.component';
+import { NewemailComponent } from '../components/newemail/newemail.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: 'account/search', component: SearchComponent },
     { path: 'account/search/details', component: DetailsComponent },
     { path: 'account/newpassword', component: NewpasswordComponent },
+    { path: 'account/newemail', component: NewemailComponent },
 
 
 ];

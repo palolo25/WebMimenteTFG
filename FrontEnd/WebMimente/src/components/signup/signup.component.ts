@@ -27,7 +27,7 @@ export class SignupComponent {
       this.router.navigate(['/login']);
     } catch (error:any){
       console.error('Error al Registrarse', error);
-      window.alert(`Error al Registrarse: ${error.message} ${this.professional}`);
+      window.alert(`Error al Registrarse: ${error.message}`);
       this.email = '';
       this.password = '';
     }

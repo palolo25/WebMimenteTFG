@@ -2,8 +2,8 @@
     <div class="cnavlogo" routerLink="/home">
         <img class="imglogo" src="assets/img/LogoGrand.svg" alt="Logo Mimente" />
     </div>
-    <div class="cmenu">
-        <button class="button" id="appointment" type="button" [routerLink]="['/account/search']">
+    <div class="cmenu" *ngIf="!isLoading">
+        <button *ngIf="!isProfessional" class="button" id="appointment" type="button" [routerLink]="['/account/search']">
             Concertar Cita
         </button>
         <button class="button" id="account" type="button" [routerLink]="['/account']">
@@ -13,4 +13,6 @@
             Cerrar Sesión
         </button>
     </div>
-</div> 
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+</div>
+

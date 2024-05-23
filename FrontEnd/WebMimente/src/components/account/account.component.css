@@ -3,6 +3,24 @@
     display: flex;
     flex-direction: column;
 }
+.cappointments{
+    background-color: var(--lightblue);
+}
+.cimgavatar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+.cimgavatar:hover{
+    cursor: pointer;
+    
+}
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
 img{
     min-width: 200px;
     min-height: 200px;
@@ -16,6 +34,11 @@ img{
     margin: 10%
 }
 .cuserinfo{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+.cprofinfo{
     display: flex;
     flex-direction: column;
     gap: 3vh;

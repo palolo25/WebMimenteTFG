@@ -1,0 +1,20 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="csign">
+        <div class="clogin">
+            <div class="ttitle">
+                Confirmación Nuevo Email
+            </div>
+            <div *ngIf="alertsuccess" class="alert alert-success" role="alert">
+                {{ alertsuccess }}
+            </div>
+            <div *ngIf="alerterror" class="alert alert-danger" role="alert">
+                {{ alerterror }}
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</body>
