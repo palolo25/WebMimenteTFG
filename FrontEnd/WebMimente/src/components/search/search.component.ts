@@ -23,7 +23,7 @@ export class SearchComponent {
   pageSize: number = 6;
   totalItems: number = 0;
   alertInfo: string | null = null;
-  private supabaseUrl: string = 'https://sxdevenwiplzwyspjbxj.supabase.co/storage/v1/object/public/userimg';
+  supabaseUrl: string = 'https://sxdevenwiplzwyspjbxj.supabase.co/storage/v1/object/public/userimg';
   //Search and Filters
   searchText: string = '';
   selectedSpecialties: string[] = [];
@@ -37,7 +37,6 @@ export class SearchComponent {
   async ngOnInit() {
     try {
       this.professionals = await this.supabaseService.getActiveProfessionals();
-
       this.filterAndSortProfessionals();
     } catch (error: any) {
       this.alertInfo = `Error fetching professionals: ${error.message}`;

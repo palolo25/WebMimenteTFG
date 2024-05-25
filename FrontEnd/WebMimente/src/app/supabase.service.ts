@@ -187,4 +187,18 @@ export class SupabaseService {
     return data;
   }
 
+  async getProfByIdProfile(idProfile: string) {
+    const { data, error } = await this.supabase
+      .from('professionals')
+      .select('*')
+      .eq('id_profile', idProfile)
+      .eq('active', true)
+      .single();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
 }
