@@ -17,12 +17,26 @@ p{
   background-color: var(--lightblue);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  width: 100%;
+  justify-content: space-around;
   align-items: center;
+  gap: 2vh;
   padding-bottom: 3vh;
 }
-
-
+.container1,.container2{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 1vh;
+  gap: 6vh;
+}
+.container1 p{
+  margin-bottom: 0;
+  height: fit-content;
+  align-self: center;
+  font-weight: 600;
+}
 
 .cprofessionals{
   background-color: var(--lightblue);
@@ -35,6 +49,7 @@ p{
     background-color: var(--lightblue);
     display: grid;
     width: 100%;
+    max-width: 1400px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 0.3fr));
     gap: 5vh;
     padding-left: 15vh;
@@ -53,9 +68,9 @@ p{
   .profile-img {
     width: 100%;
     height: 80%;
-    min-width: 200px;
+    min-width: 270px;
     min-height: 352px;
-    max-width: 400px;
+    max-width: 300px;
     max-height: 400px;
   }
   

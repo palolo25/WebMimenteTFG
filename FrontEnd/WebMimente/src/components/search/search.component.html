@@ -6,44 +6,65 @@
     <app-accnavbar></app-accnavbar>
     <div class="ctitle">
         <h1> Profesionales</h1>
-        <p>Escoge a los mejores profesionales</p>
+        <p>Usa los filtros para encontrar a los mejores profesionales</p>
     </div>
 
     <div class="filter-container">
-      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="searchText" (input)="filterAndSortProfessionals()" />
-    
-      <div>
-        <label>Especialidad:</label>
-        <div *ngFor="let specialty of availableSpecialties">
-          <input 
-            type="checkbox" 
-            [value]="specialty" 
-            (change)="onSpecialtyChange($event, specialty)" 
-            [checked]="selectedSpecialties.includes(specialty)" 
-          />
-         {{ specialty }}
+      <div class="container1">
+        <p>Filtros:</p>
+        <div class="form-floating">
+          <input class="form-control" id="floatingInput" type="text" placeholder="Buscar" [(ngModel)]="searchText" (input)="filterAndSortProfessionals()" />
+          <label for="floatingInput">Buscar por Nombre</label>
+        </div>
+        
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-secondary" id="dropdownBasic" ngbDropdownToggle>Especialidad</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+            <div class="dropdown-item">
+              <input 
+              type="checkbox" 
+              [value]="'Todas'" 
+              [(ngModel)]="selectAllSpecialties" 
+              (change)="toggleAllSpecialties($event)" 
+              checked 
+            /> Todas
+            </div>
+            <div *ngFor="let specialty of availableSpecialties" class="dropdown-item">
+            <input 
+              type="checkbox" 
+              [value]="specialty" 
+              (change)="onSpecialtyChange($event, specialty)" 
+              [checked]="selectedSpecialties.includes(specialty)" 
+            />
+          {{ specialty }}
+          </div>
+          </div>
         </div>
       </div>
-    
-      <div>
-        <label>Precio:</label>
+
+      <div class="container2">
         <div>
-          <input type="radio" name="price" value="<40" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 40€
-          <input type="radio" name="price" value="<50" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 50€
-          <input type="radio" name="price" value="<60" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 60€
+          <label class="form-check-label">Precio:</label>
+          <div>
+            <input class="form-check-input" type="radio" name="price" value="cualquiera" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" checked /> Cualquiera
+            <input class="form-check-input" type="radio" name="price" value="<40" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 40€
+            <input class="form-check-input" type="radio" name="price" value="<50" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 50€
+            <input class="form-check-input" type="radio" name="price" value="<60" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 60€
+          </div>
+        </div>
+      
+        <div>
+          <label>Ordenar por:</label>
+          <select class="form-select" [(ngModel)]="sortOrder" (change)="filterAndSortProfessionals()">
+            <option value="nameAsc">Nombre A-Z</option>
+            <option value="nameDesc">Nombre Z-A</option>
+            <option value="priceAsc">Precio Ascendente</option>
+            <option value="priceDesc">Precio Descendente</option>
+            <option value="specialtyAsc">Especialidad A-Z</option>
+          </select>
         </div>
       </div>
-    
-      <div>
-        <label>Ordenar por:</label>
-        <select [(ngModel)]="sortOrder" (change)="filterAndSortProfessionals()">
-          <option value="nameAsc">Nombre A-Z</option>
-          <option value="nameDesc">Nombre Z-A</option>
-          <option value="priceAsc">Precio Ascendente</option>
-          <option value="priceDesc">Precio Descendente</option>
-          <option value="specialtyAsc">Especialidad A-Z</option>
-        </select>
-      </div>
+
     </div>
 
     <div class="cprofessionals" *ngIf="!contentLoading">

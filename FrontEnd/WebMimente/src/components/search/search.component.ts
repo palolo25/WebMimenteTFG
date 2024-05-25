@@ -4,13 +4,13 @@ import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../app/supabase.service';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AccnavbarComponent,FooterComponent,RouterModule,CommonModule,NgbPaginationModule,FormsModule],
+  imports: [AccnavbarComponent,FooterComponent,RouterModule,CommonModule,NgbPaginationModule,FormsModule,NgbDropdownModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
@@ -27,7 +27,8 @@ export class SearchComponent {
   //Search and Filters
   searchText: string = '';
   selectedSpecialties: string[] = [];
-  selectedPriceRange: string = '';
+  selectAllSpecialties: boolean = true;
+  selectedPriceRange: string = 'cualquiera';
   sortOrder: string = '';
   availableSpecialties: string[] = ['Psicología', 'Psiquiatría', 'Psicología Clínica', 'Psicología Infantil', 'Neuropsicología', 'Psicología de la Adolescencia', 'Psicología Geriátrica', 'Psicología de la Personalidad', 'Psicología Social', 'Psicología del Trabajo'];
 
@@ -57,7 +58,20 @@ export class SearchComponent {
     if (event.target.checked) {
       this.selectedSpecialties.push(specialty);
     } else {
-      this.selectedSpecialties = this.selectedSpecialties.filter(item => item !== specialty);
+      const index = this.selectedSpecialties.indexOf(specialty);
+      if (index > -1) {
+        this.selectedSpecialties.splice(index, 1);
+      }
+    }
+    this.selectAllSpecialties = this.selectedSpecialties.length === this.availableSpecialties.length;
+    this.filterAndSortProfessionals();
+  }
+
+  toggleAllSpecialties(event: any) {
+    if (event.target.checked) {
+      this.selectedSpecialties = [...this.availableSpecialties];
+    } else {
+      this.selectedSpecialties = [];
     }
     this.filterAndSortProfessionals();
   }
@@ -65,20 +79,22 @@ export class SearchComponent {
   filterAndSortProfessionals() {
     let filtered = this.professionals;
 
-    // Filter by search
+    // Filter by Name
     if (this.searchText) {
       filtered = filtered.filter(prof => prof.name.toLowerCase().includes(this.searchText.toLowerCase()));
     }
 
     // Filter by specialties
-    if (this.selectedSpecialties.length > 0) {
-      filtered = filtered.filter(prof => this.selectedSpecialties.includes(prof.specialty));
+    if (!this.selectAllSpecialties && this.selectedSpecialties.length > 0) {
+      filtered = filtered.filter(prof =>
+        this.selectedSpecialties.includes(prof.specialty)
+      );
     }
 
     // Filter by price
-    if (this.selectedPriceRange) {
-      const maxPrice = parseInt(this.selectedPriceRange.substring(1));
-      filtered = filtered.filter(prof => prof.price < maxPrice);
+    if (this.selectedPriceRange !== 'cualquiera') {
+      const priceLimit = parseFloat(this.selectedPriceRange.substring(1));
+      filtered = filtered.filter(prof => prof.price < priceLimit);
     }
 
     // Sort the results
