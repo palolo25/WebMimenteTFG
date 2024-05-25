@@ -13,12 +13,11 @@ import { CommonModule } from '@angular/common';
 })
 export class NewemailComponent {
 
-  alertsuccess: string = '';
-  alerterror: string = '';
+  alertSuccess: string = '';
+  alertError: string = '';
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private supabaseService: SupabaseService
   ) {}
 
@@ -29,15 +28,15 @@ export class NewemailComponent {
       try {
         const { user,session } = await this.supabaseService.confirmEmailChange(tokenHash);
         if (!user) {
-          this.alerterror = 'Error al obtener usuario';
+          this.alertError = 'Error al obtener usuario';
         } else {
-          this.alertsuccess = `Se ha cambiado el email correctamente a: ${user.email}`;
+          this.alertSuccess = `Se ha cambiado el email correctamente a: ${user.email}`;
         }
       } catch (error: any) {
-        this.alerterror = 'Error: ' + error.message;
+        this.alertError = 'Error: ' + error.message;
       }
     } else {
-      this.alerterror = 'Link de confirmación inválido';
+      this.alertError = 'Link de confirmación inválido';
     }
   }
 }

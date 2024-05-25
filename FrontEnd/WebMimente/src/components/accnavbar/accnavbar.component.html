@@ -1,6 +1,6 @@
 <div class="navbar">
     <div class="cnavlogo" routerLink="/home">
-        <img class="imglogo" src="assets/img/LogoGrand.svg" alt="Logo Mimente" />
+        <img class="imglogo" src="assets/img/LogoGrand.svg" alt="Logo Mimente" [routerLink]="['/account']" />
     </div>
     <div class="cmenu" *ngIf="!isLoading">
         <button *ngIf="!isProfessional" class="button" id="appointment" type="button" [routerLink]="['/account/search']">

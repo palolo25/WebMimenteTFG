@@ -16,6 +16,9 @@ import { Modal } from 'bootstrap';
 export class AccountComponent {
 
   //User data
+  specialties: string[] = ['Psicología', 'Psiquiatría', 'Psicología Clínica', 'Psicología Infantil', 'Neuropsicología', 'Psicología de la Adolescencia', 'Psicología Geriátrica', 'Psicología de la Personalidad', 'Psicología Social', 'Psicología del Trabajo'];
+  specialty: string ='';
+  editSpecialty: string = '';
   name: string = '';
   editName: string = '';
   email: string = '';
@@ -25,13 +28,13 @@ export class AccountComponent {
   //Professional data
   bio: string = '';
   editBio: string = '';
-  price: string = '';
-  editPrice: string = '';
+  price: number = 0;
+  editPrice: number = 0 ;
   active: boolean = false;
   editActive: boolean = false;
   activeName: string = '';
   //Alert
-  alerterror: string = '';
+  alertError: string = '';
   //Other conditionals
   isLoading: boolean = true;
   modalIsLoading: boolean = false;
@@ -40,14 +43,21 @@ export class AccountComponent {
   
   constructor(private supabaseService: SupabaseService) {}
 
-  ngOnInit() {
-    this.loadUserProfile();
-    if(this.isProfessional){
-      this.loadProfProfile();
+  async ngOnInit() {
+    this.isLoading = true;
+    try {
+      await this.loadUserProfile();
+      if (this.isProfessional) {
+        await this.loadProfProfile();
+      }
+    } catch (error: any) {
+      this.alertError = `Error: ${error.message}`;
+    } finally {
+      this.isLoading = false;
     }
-    this.isLoading = false;
 
   }
+
   openEditPhotoModal() {
     const modalElement = document.getElementById('editPhotoModal');
     if (modalElement) {
@@ -79,18 +89,18 @@ export class AccountComponent {
       if (user && user.id) {
         const profile = await this.supabaseService.getUserProfile(user.id);
         if (profile) {
-          this.name = profile.name ?? 'Sin nombre';
-          this.email = profile.email ?? 'Sin email';
-          this.imgprofile = profile.imgprofile ?? 'default';
-          this.isProfessional = profile.professional ?? false;
+          this.name = profile.name;
+          this.email = profile.email;
+          this.imgprofile = profile.imgprofile;
+          this.isProfessional = profile.professional;
         } else {
-          this.alerterror = 'No se pudo obtener la información del perfil del usuario.';
+          this.alertError = 'No se pudo obtener la información del perfil del usuario.';
         }
       } else {
-        this.alerterror = 'No se pudo obtener la información del usuario.';
+        this.alertError = 'No se pudo obtener la información del usuario.';
       }
     } catch (error: any) {
-      this.alerterror = `Error: ${error.message}`;
+      this.alertError = `Error: ${error.message}`;
     }
   }
 
@@ -100,22 +110,19 @@ export class AccountComponent {
       if (user && user.id) {
         const profProfile = await this.supabaseService.getProfProfile(user.id);
         if (profProfile) {
-          this.bio = profProfile.bio ?? 'Sin bio';
-          this.price = profProfile.price ?? 'Sin Precio';
-          this.active = profProfile.active ?? false;
-          if (this.active){
-            this.activeName = 'Publicado'
-          } else {
-            this.activeName = 'Oculto';
-          }
+          this.bio = profProfile.bio;
+          this.price = profProfile.price;
+          this.active = profProfile.active;
+          this.specialty = profProfile.specialty;
+          this.activeName = this.active ? 'Publicado' : 'Oculto';
         } else {
-          this.alerterror = 'No se pudo obtener la información del perfil del usuario.';
+          this.alertError = 'No se pudo obtener la información del perfil del profesional.';
         }
       } else {
-        this.alerterror = 'No se pudo obtener la información del usuario.';
+        this.alertError = 'No se pudo obtener la información del profesional.';
       }
     } catch (error: any){
-      this.alerterror = `Error: ${error.message}`;
+      this.alertError = `Error: ${error.message}`;
     }
   }
 
@@ -164,44 +171,43 @@ export class AccountComponent {
       if (!this.editName ) {
         this.editName = this.name;
         }
-        if (!this.editEmail){
-          this.editEmail = this.email;
+      if (!this.editEmail){
+        this.editEmail = this.email;
+      }
+      if (!this.editBio){
+        this.editBio = this.bio;
+      }
+      if (!this.editPrice){
+        this.editPrice = this.price;
+      }
+      if (!this.editSpecialty){
+        this.editSpecialty = this.specialty;
+      }
+      if (this.editName !== this.name) {
+        try {
+          await this.supabaseService.updateUserProfile(this.editName, this.editEmail);
+          this.name = this.editName;
+        } catch (error: any) {
+          console.error('Error updating user data', error);
+          window.alert(`Error updating user data: ${error.message}`);
         }
-        if (!this.editBio){
-          this.editBio = this.bio;
-        }
-        if (!this.editPrice){
-          this.editPrice = this.price;
-        }
-        if (!this.editActive){
-          this.editActive = this.active;
-        }
-        if (this.editName !== this.name) {
-          try {
-            await this.supabaseService.updateUserProfile(this.editName, this.editEmail);
-            this.name = this.editName;
-          } catch (error: any) {
-            console.error('Error updating user data', error);
-            window.alert(`Error updating user data: ${error.message}`);
-          }
-        }
-        try{
-          await this.supabaseService.updateProfProfile(this.bio, this.price, this.active);
-          this.bio = this.editBio;
-          this.price = this.editPrice;
-          this.active = this.editActive;
-          if (this.active){
-            this.activeName = 'Publicado'
-          } else {
-            this.activeName = 'Oculto';
-          }
-          this.modalIsLoading = false;
-          this.closeModal('editDataModal')
+      }
+      try{
+        await this.supabaseService.updateProfProfile(this.editBio, this.editPrice, this.editActive, this.editSpecialty);
+        this.bio = this.editBio;
+        this.price = this.editPrice;
+        this.active = this.editActive;
+        this.specialty = this.editSpecialty;
+        this.activeName = this.active ? 'Publicado' : 'Oculto';
 
-        }catch (error: any) {
-          console.error('Error updating professional data', error);
-          window.alert(`Error updating professional data: ${error.message}`);
-        }
+        this.modalIsLoading = false;
+        this.closeModal('editDataModal');
+        this.loadProfProfile();
+
+      }catch (error: any) {
+        console.error('Error updating professional data', error);
+        window.alert(`Error updating professional data: ${error.message}`);
+      }
 
     }
   }

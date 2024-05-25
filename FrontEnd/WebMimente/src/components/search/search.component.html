@@ -1,1 +1,72 @@
-<p>search works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <app-accnavbar></app-accnavbar>
+    <div class="ctitle">
+        <h1> Profesionales</h1>
+        <p>Escoge a los mejores profesionales</p>
+    </div>
+
+    <div class="filter-container">
+      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="searchText" (input)="filterAndSortProfessionals()" />
+    
+      <div>
+        <label>Especialidad:</label>
+        <div *ngFor="let specialty of availableSpecialties">
+          <input 
+            type="checkbox" 
+            [value]="specialty" 
+            (change)="onSpecialtyChange($event, specialty)" 
+            [checked]="selectedSpecialties.includes(specialty)" 
+          />
+         {{ specialty }}
+        </div>
+      </div>
+    
+      <div>
+        <label>Precio:</label>
+        <div>
+          <input type="radio" name="price" value="<40" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 40€
+          <input type="radio" name="price" value="<50" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 50€
+          <input type="radio" name="price" value="<60" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> Menos de 60€
+        </div>
+      </div>
+    
+      <div>
+        <label>Ordenar por:</label>
+        <select [(ngModel)]="sortOrder" (change)="filterAndSortProfessionals()">
+          <option value="nameAsc">Nombre A-Z</option>
+          <option value="nameDesc">Nombre Z-A</option>
+          <option value="priceAsc">Precio Ascendente</option>
+          <option value="priceDesc">Precio Descendente</option>
+          <option value="specialtyAsc">Especialidad A-Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="cprofessionals" *ngIf="!contentLoading">
+      <div class="grid-container">
+        <div class="grid-item" *ngFor="let prof of paginatedProfessionals">
+          <img [src]="constructProfileImageUrl(prof.uid)" alt="{{ prof.name }}" class="profile-img" />
+          <div class="info">
+            <div class="name">{{ prof.name }}</div>
+            <div class="price">{{ prof.price | currency: 'EUR' }}</div>
+            <div class="info2">
+              <div class="specialty"> {{prof.specialty}} </div>
+            </div>
+          </div>
+          <button (click)="viewDetails(prof.id_profile)">Ver Detalle</button>
+        </div>
+      </div>
+      <ngb-pagination [collectionSize]="filteredProfessionals.length" [pageSize]="pageSize" [(page)]="page"  [boundaryLinks]="true" (pageChange)="onPageChange($event)"></ngb-pagination>
+    </div>
+    <div *ngIf="contentLoading" class="spinner-border" role="status"></div>
+    <div *ngIf="alertInfo" class="alert alert-info" role="alert">
+      {{alertInfo}}
+    </div>
+</body>
+<footer>
+    <app-footer></app-footer>
+</footer>

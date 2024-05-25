@@ -19,8 +19,16 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    margin-right: 3%;
 }
-
+.cheader{
+    background-color: var(--middleblue);
+    border-radius: 2ch;
+    padding: 2rem;
+}
+h1,p{
+    font-family: var(--subtitle-font-family);
+}
 img{
     min-width: 200px;
     min-height: 200px;
@@ -29,9 +37,24 @@ img{
 }
 .cuserdata{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10%;
     margin: 10%
+}
+.cuserprofile,.cprofprofile{
+    display: flex;
+    flex-direction: row;
+    gap: 12vh;
+    margin: 5%;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.cprofprofile{
+    justify-content: space-between;
+}
+.cuserprofile{
+    justify-content: space-evenly;
 }
 .cuserinfo{
     display: flex;
@@ -43,15 +66,17 @@ img{
     flex-direction: column;
     gap: 3vh;
 }
-.title{
+.title,.subtitle{
     font-family: var(--subtitle-font-family);
     font-size: var(--smalltext-font-size);
 }
-.subtitle{
-    font-family: var(--subtitle-font-family);
-    font-size: var(--smalltext-font-size);
+.title{
     font-weight: 700;
-
+    font-size: 1.75rem;
+}
+.subtitle{
+    font-weight: 400;
+    font-size: 1.50rem;;
 }
 .cappointments{
     margin: 10%
@@ -74,4 +99,11 @@ img{
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
   transition: 0.5s;
   transform: translateY(-0.25em);
+}
+.green-text {
+color: var(--brandgreen);
+}
+  
+.orange-text {
+color: var(--orange);
 }

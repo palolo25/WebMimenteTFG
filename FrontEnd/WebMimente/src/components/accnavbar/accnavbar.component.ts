@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AccountComponent } from '../account/account.component';
-import { SearchComponent } from '../search/search.component';
 import { Router,RouterModule } from '@angular/router';
 import { SupabaseService } from '../../app/supabase.service';
 import { CommonModule } from '@angular/common';
@@ -8,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-accnavbar',
   standalone: true,
-  imports: [AccountComponent,SearchComponent,RouterModule,CommonModule],
+  imports: [RouterModule,CommonModule],
   templateUrl: './accnavbar.component.html',
   styleUrl: './accnavbar.component.css'
 })

@@ -102,7 +102,7 @@ export class SupabaseService {
   async getProfProfile(userId: string) {
     const { data, error } = await this.supabase
       .from('professionals')
-      .select('bio, price, active')
+      .select('bio, price, active, specialty')
       .eq('uid', userId)
       .single();
     if (error) {
@@ -164,15 +164,27 @@ export class SupabaseService {
     }
   }
 
-  async updateProfProfile(bio:string,price:string,active:boolean){
+  async updateProfProfile(bio:string,price:number,active:boolean,specialty:string){
     const user = await this.getCurrentUser();
     const {error} = await this.supabase
     .from ('professionals')
-    .update({bio,price,active})
+    .update({bio,price,active,specialty})
     .eq('uid', user.id);
     if(error) {
       throw error;
     }
+  }
+
+  async getActiveProfessionals() {
+    const { data, error } = await this.supabase
+      .from('professionals')
+      .select('*')
+      .eq('active', true);
+  
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
   }
 
 }

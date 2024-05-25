@@ -16,8 +16,8 @@ export class NewpasswordComponent {
 
   email: string = '';
   password: string = '';
-  alertsuccess: string = '';
-  alerterror: string = '';
+  alertSuccess: string = '';
+  alertError: string = '';
 
 
   constructor(private supabaseService: SupabaseService, private router: Router){}
@@ -32,22 +32,22 @@ export class NewpasswordComponent {
       if (user) {
         this.email = user.email ?? '';
       } else {
-        this.alerterror = 'No se pudo obtener el email';
+        this.alertError = 'No se pudo obtener el email';
       }
     } catch (error: any) {
-      this.alerterror = `Error: ${error.message}`;
+      this.alertError = `Error: ${error.message}`;
     }
   }
 
   async updateUser(){
     try{
       await this.supabaseService.updateUser(this.password);
-      this.alerterror = '';
+      this.alertError = '';
       window.alert('Contraseña cambiada con éxito!');
       this.router.navigate(['/account']);
     }catch (error:any) {
-      this.alerterror = `Error: ${error.message}`
-      this.alertsuccess = '';
+      this.alertError = `Error: ${error.message}`
+      this.alertSuccess = '';
     }
   }
 
