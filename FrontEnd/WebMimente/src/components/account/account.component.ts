@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AccnavbarComponent } from '../accnavbar/accnavbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SignupComponent } from '../signup/signup.component';
 import { AccountComponent } from '../account/account.component';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 import { PassrecoverymodalComponent } from "../passrecoverymodal/passrecoverymodal.component";
 import { Modal } from 'bootstrap';
 

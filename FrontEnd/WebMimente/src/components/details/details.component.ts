@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { AccnavbarComponent } from '../accnavbar/accnavbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterModule,AccnavbarComponent,FooterComponent,CommonModule,FormsModule],
+  imports: [RouterModule,AccnavbarComponent,FooterComponent,CommonModule,FormsModule,NgbDatepicker],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
