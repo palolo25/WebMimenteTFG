@@ -47,14 +47,16 @@
 }
 #logout{
   background: var(--middleblue);
+  color: black;
 }
 .button {
   font-family: "Spline Sans", sans-serif;
   border-radius: 1.5rem;
-  padding: 1.625rem 3rem 1.625rem 3rem;
+  padding: 1.4rem 2.4rem;
   position: relative;
   border-style: none;
-  font-size: var(--links-font-size);
+  font-size: 1.5rem;
+  color: var(--lightblue);
   transition: 0.5s;
   display: flex;
   flex-wrap: wrap;

@@ -27,7 +27,6 @@ export class LoginComponent {
       if(error){
         throw error;
       }
-      window.alert('Inicio Correcto!');
       this.router.navigate(['/account']);
     } catch (error:any) {
       window.alert(`Error al iniciar sesión: ${error.message}`);
