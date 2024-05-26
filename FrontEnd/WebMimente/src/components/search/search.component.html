@@ -1,1 +1,93 @@
-<p>search works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <app-accnavbar></app-accnavbar>
+    <div class="ctitle">
+        <h1> Profesionales</h1>
+        <p>Usa los filtros para encontrar a los mejores profesionales</p>
+    </div>
+
+    <div class="filter-container">
+      <div class="container1">
+        <p>Filtros:</p>
+        <div class="form-floating">
+          <input class="form-control" id="floatingInput" type="text" placeholder="Buscar" [(ngModel)]="searchText" (input)="filterAndSortProfessionals()" />
+          <label for="floatingInput">Buscar por Nombre</label>
+        </div>
+        
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-secondary" id="dropdownBasic" ngbDropdownToggle>Especialidad</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+            <div class="dropdown-item">
+              <input 
+              type="checkbox" 
+              [value]="'Todas'" 
+              [(ngModel)]="selectAllSpecialties" 
+              (change)="toggleAllSpecialties($event)" 
+              checked 
+            /> Todas
+            </div>
+            <div *ngFor="let specialty of availableSpecialties" class="dropdown-item">
+            <input 
+              type="checkbox" 
+              [value]="specialty" 
+              (change)="onSpecialtyChange($event, specialty)" 
+              [checked]="selectedSpecialties.includes(specialty)" 
+            />
+          {{ specialty }}
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container2">
+        <div>
+          <label class="form-check-label">Precio:</label>
+          <div>
+            <input class="form-check-input" type="radio" name="price" value="cualquiera" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" checked /> Cualquiera
+            <input class="form-check-input" type="radio" name="price" value="<40" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 40€
+            <input class="form-check-input" type="radio" name="price" value="<50" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 50€
+            <input class="form-check-input" type="radio" name="price" value="<60" [(ngModel)]="selectedPriceRange" (change)="filterAndSortProfessionals()" /> 60€
+          </div>
+        </div>
+      
+        <div>
+          <label>Ordenar por:</label>
+          <select class="form-select" [(ngModel)]="sortOrder" (change)="filterAndSortProfessionals()">
+            <option value="nameAsc">Nombre A-Z</option>
+            <option value="nameDesc">Nombre Z-A</option>
+            <option value="priceAsc">Precio Ascendente</option>
+            <option value="priceDesc">Precio Descendente</option>
+            <option value="specialtyAsc">Especialidad A-Z</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cprofessionals" *ngIf="!contentLoading">
+      <div class="grid-container">
+        <div class="grid-item" *ngFor="let prof of paginatedProfessionals">
+          <img [src]="constructProfileImageUrl(prof.uid)" alt="{{ prof.name }}" class="profile-img" />
+          <div class="info">
+            <div class="name">{{ prof.name }}</div>
+            <div class="price">{{ prof.price | currency: 'EUR' }}</div>
+            <div class="info2">
+              <div class="specialty"> {{prof.specialty}} </div>
+            </div>
+          </div>
+          <button (click)="viewDetails(prof.id_profile)">Ver Detalle</button>
+        </div>
+      </div>
+      <ngb-pagination [collectionSize]="filteredProfessionals.length" [pageSize]="pageSize" [(page)]="page"  [boundaryLinks]="true" (pageChange)="onPageChange($event)"></ngb-pagination>
+    </div>
+    <div *ngIf="contentLoading" class="spinner-border" role="status"></div>
+    <div *ngIf="alertInfo" class="alert alert-info" role="alert">
+      {{alertInfo}}
+    </div>
+</body>
+<footer>
+    <app-footer></app-footer>
+</footer>

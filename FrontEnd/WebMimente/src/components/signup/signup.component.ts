@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,11 +13,24 @@ import { LoginComponent } from '../login/login.component';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  username: string = '';
+  name: string = '';
   email: string = '';
   password: string = '';
   professional: boolean = false;
 
-  signup(){}
+  constructor(private supabaseService: SupabaseService, private router: Router){}
+
+  async signUp(){
+    try{
+      const data = await this.supabaseService.signUp(this.email, this.password, this.name, this.professional);
+      window.alert('Registrado con éxito!, Ahora inicia sesión');
+      this.router.navigate(['/login']);
+    } catch (error:any){
+      console.error('Error al Registrarse', error);
+      window.alert(`Error al Registrarse: ${error.message}`);
+      this.email = '';
+      this.password = '';
+    }
+  }
 
 }

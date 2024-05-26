@@ -1,1 +1,155 @@
-<p>account works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <app-accnavbar></app-accnavbar>
+    <div class="caccount" *ngIf="!isLoading">
+        <div class="cuserdata">
+            <div class="cheader">
+                <h1>Mi Perfil</h1>
+                <p> Aquí podrás ver y editar tus datos</p>
+            </div>
+            <div [ngClass]="{ 'cuserprofile': !isProfessional, 'cprofprofile': isProfessional }">
+                <div class="cimgavatar" (click)="openEditPhotoModal()">
+                <img [src]="imgprofile" alt="User Avatar" class="avatar-img"/>
+                <div class="overlay">
+                    <svg alt="Edit Icon" class="pen-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg>
+                </div>
+                </div>
+                <div *ngIf="!isProfessional" class="cuserinfo">
+                    <label class="title" id="name"> Nombre: 
+                        <label class="subtitle" id="name">{{ name }}</label>
+                    </label>
+                    <label class="title" id="email"> Email: 
+                        <label class="subtitle" id="email">{{ email }}</label>
+                    </label>
+                    <button class="button" id="edit" type="button" href="javascript:void(0)" (click)="openEditDataModal()">
+                        Editar Datos
+                    </button>
+                    <div *ngIf="alertError" class="alert alert-danger" role="alert">
+                        {{ alertError }}
+                    </div>
+                </div>
+                <div *ngIf="isProfessional" class="cprofinfo">
+                    <label class="title" id="name"> Nombre: 
+                        <label class="subtitle" id="name">{{ name }}</label>
+                    </label>
+                    <label class="title" id="email"> Email: 
+                        <label class="subtitle" id="email">{{ email }}</label>
+                    </label>
+                    <label class="title" id="bio"> Biografía: 
+                        <label class="subtitle" id="bio">{{ bio }}</label>
+                    </label>
+                    <label class="title" id="price"> Precio (€/h): 
+                        <label class="subtitle" id="price">{{ price }}</label>
+                    </label>
+                    <label class="title" id="specialty"> Especialidad: 
+                        <label class="subtitle" id="specialty">{{ specialty }}</label>
+                    </label>
+                    <label class="title" id="active"> Estado Perfil: 
+                        <label class="subtitle" id="active"  [ngClass]="{ 'green-text': activeName === 'Publicado', 'orange-text': activeName === 'Oculto' }">
+                            {{ activeName }}</label>
+                    </label>
+                    <button class="button" id="edit" type="button" href="javascript:void(0)" (click)="openEditDataModal()">
+                        Editar Datos
+                    </button>
+                    <div *ngIf="alertError" class="alert alert-danger" role="alert">
+                        {{ alertError }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+    <div class="cappointments">
+        <div class="table">
+            <p>Table</p>
+        </div>
+    </div>
+      <!-- Edit Photo Modal -->
+    <div class="modal fade" id="editPhotoModal" tabindex="-1" aria-labelledby="editPhotoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="editPhotoModalLabel">Editar Imagen de Perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form (ngSubmit)="uploadProfilePicture()" #photoForm="ngForm">
+                <div class="mb-3">
+                <input type="file" class="form-control" id="profilePicture" (change)="onFileChange($event)" accept=".jpg,.png" required />
+                <small>Solo formatos .jpg o .png, máximo 1MB</small>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Cambiar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Edit Data Modal -->
+    <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="updateUserData()" #editForm="ngForm">
+                    <div class="mb-3">
+                        <label for="editName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" [value]="name" id="editName" name="editName" [(ngModel)]="editName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" [value]="email" id="editEmail" name="editEmail" [(ngModel)]="editEmail" required />
+                        <small>Enviaremos un correo a tu nuevo email para confirmar el cambio</small>
+                    </div>
+                    <div *ngIf="isProfessional">
+                        <div class="mb-3">
+                            <label for="editBio" class="form-label">Biografía</label>
+                            <textarea type="text" class="form-control" [value]="bio" id="editBio" name="editBio" rows="3" [(ngModel)]="editBio" required></textarea>
+                            <small>Haz una breve descripción de tu experiencia, especialidades, y biografía para mostrar al paciente</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPrice" class="form-label">Precio</label>
+                            <input type="number" class="form-control" [value]="price" id="editPrice" name="editPrice" [(ngModel)]="editPrice" required />
+                            <small>Precio base en euros por hora de servicio</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editSpecialty" class="form-label">Especialidad:</label>
+                            <select class="form-control" id="editSpecialty" name="editSpecialty" [(ngModel)]="editSpecialty" required>
+                              <option *ngFor="let specialty of specialties" [value]="specialty" name="editSpecialty">{{ specialty }}</option>
+                            </select>
+                            <small>Escoge tu especialidad para ayudar a los pacientes a encontrarte</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editActive" class="form-label">Estado del perfil:</label>
+                            <select class="form-control" id="editActive" name="editActive" [(ngModel)]="editActive" required>
+                              <option [value]="true">Publicado</option>
+                              <option [value]="false">Oculto</option>
+                            </select>
+                            <small>Indica si deseas publicar tu perfil</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div *ngIf="modalIsLoading" class="spinner-border" role="status"></div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<footer>
+    <app-footer></app-footer>
+</footer>
