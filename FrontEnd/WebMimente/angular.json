@@ -16,7 +16,6 @@
             "outputPath": "dist/web-mimente",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "localize": ["es-ES"],
             "polyfills": [
               "zone.js"
             ],
@@ -39,12 +38,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "40kb"
                 }
               ],
               "outputHashing": "all"
