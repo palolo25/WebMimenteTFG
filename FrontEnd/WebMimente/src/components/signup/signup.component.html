@@ -23,14 +23,14 @@
                 <small id="passwordHelp" class="form-text text-muted">Al menos 8 caracteres. Debe incluir letras y números</small>
                 </div>
                 <div class="form-check form-check-reverse">
-                <input class="form-check-input" type="checkbox" id="professional-signup" name="professional" [(ngModel)]="professional">
-                <label class="form-check-label" for="reverseCheck1">
-                    Soy un profesional de la salud mental
+                <input class="form-check-input" type="checkbox" title="Registro como Profesional" id="professional-signup" name="professional" [(ngModel)]="professional">
+                <label class="form-check-label">
+                    Deseo registrarme como profesional de la salud mental
                 </label>
                 </div>
-                <button type="submit" class="btn btn-primary">Resgistrarse</button>
+                <button type="submit" class="primary">Resgistrarse</button>
             </form>
-            <button class="btn btn-secondary" [routerLink]="['/login']">Iniciar Sesión</button>
+            <button class="secondary" [routerLink]="['/login']">Iniciar Sesión</button>
         </div>
     </div>
     <app-footer></app-footer>

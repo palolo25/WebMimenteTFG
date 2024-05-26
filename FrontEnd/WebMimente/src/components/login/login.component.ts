@@ -21,18 +21,30 @@ export class LoginComponent {
 
   constructor(private supabaseService: SupabaseService, private router: Router){}
 
-  async signIn(){
-    try{
-      const{data,error} = await this.supabaseService.signIn(this.email, this.password);
-      if(error){
-        throw error;
-      }
+  async ngOnInit() {
+    const { user } = await this.supabaseService.getUser();
+    if (user) {
       this.router.navigate(['/account']);
-    } catch (error:any) {
-      window.alert(`Error al iniciar sesión: ${error.message}`);
-      this.email = '';
-      this.password = '';
     }
+  }
+
+  async signIn(){
+    if(!this.email ||!this.password){
+      window.alert('Introduce datos válidos');
+    }else{
+      try{
+        const{data,error} = await this.supabaseService.signIn(this.email, this.password);
+        if(error){
+          throw error;
+        }
+        this.router.navigate(['/account']);
+      } catch (error:any) {
+        window.alert(`Error al iniciar sesión: ${error.message}`);
+        this.email = '';
+        this.password = '';
+      }
+    }
+
   }
 
   openRecoveryModal() {
