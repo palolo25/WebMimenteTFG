@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AccnavbarComponent } from '../accnavbar/accnavbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { specialties } from '../../app/constants/specialties';
 
 @Component({
   selector: 'app-account',
@@ -16,7 +17,7 @@ import { Modal } from 'bootstrap';
 export class AccountComponent {
 
   //User data
-  specialties: string[] = ['Psicología', 'Psiquiatría', 'Psicología Clínica', 'Psicología Infantil', 'Neuropsicología', 'Psicología de la Adolescencia', 'Psicología Geriátrica', 'Psicología de la Personalidad', 'Psicología Social', 'Psicología del Trabajo'];
+  specialties: string[] = specialties;
   specialty: string ='';
   editSpecialty: string = '';
   name: string = '';

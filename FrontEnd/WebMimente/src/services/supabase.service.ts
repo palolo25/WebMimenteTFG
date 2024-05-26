@@ -187,4 +187,45 @@ export class SupabaseService {
     return data;
   }
 
+  async getProfByIdProfile(idProfile: string) {
+    const { data, error } = await this.supabase
+      .from('professionals')
+      .select('*')
+      .eq('id_profile', idProfile)
+      .eq('active', true)
+      .single();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
+  async checkExistingAppointment(idUser: string, date: String, idProf: string) {
+    const { data, error} = await this.supabase
+    .from('appointments')
+    .select('*')
+    .eq('id_user', idUser)
+    .eq('date', date)
+    .eq('id_prof',idProf)
+    .not('state', 'eq', 'Cancelada')
+    .single();
+
+    if(error && error.code !== 'PGRST116') {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
+  async createAppointment(appointment: any){
+    const { data, error} = await this.supabase
+    .from('appointments')
+    .insert([appointment]);
+
+    if(error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
 }

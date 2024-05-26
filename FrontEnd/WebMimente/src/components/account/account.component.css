@@ -8,8 +8,6 @@
 }
 .cimgavatar {
     position: relative;
-    width: 150px;
-    height: 150px;
 }
 .cimgavatar:hover{
     cursor: pointer;
@@ -30,8 +28,8 @@ h1,p{
     font-family: var(--subtitle-font-family);
 }
 img{
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 300px;
+    min-height: 300px;
     max-height: 1000px;
     max-width: 1000px;
 }
@@ -44,18 +42,14 @@ img{
 .cuserprofile,.cprofprofile{
     display: flex;
     flex-direction: row;
-    gap: 12vh;
-    margin: 5%;
+    gap: 8vh;
+    margin: 2%;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-}
-.cprofprofile{
-    justify-content: space-between;
-}
-.cuserprofile{
     justify-content: space-evenly;
 }
+
 .cuserinfo{
     display: flex;
     flex-direction: column;
@@ -65,7 +59,9 @@ img{
     display: flex;
     flex-direction: column;
     gap: 3vh;
+    max-width: 900px;
 }
+
 .title,.subtitle{
     font-family: var(--subtitle-font-family);
     font-size: var(--smalltext-font-size);

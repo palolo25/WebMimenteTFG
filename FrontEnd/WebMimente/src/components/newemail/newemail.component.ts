@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

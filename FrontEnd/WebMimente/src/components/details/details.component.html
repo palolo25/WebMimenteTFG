@@ -1,1 +1,67 @@
-<p>details works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <app-accnavbar></app-accnavbar>
+    <div class="ctitle">
+        <div class="c2">
+        <h1>Concertar cita</h1>
+        <p>Aquí encontrarás los detalles para concertar cita con el profesional</p>  
+        </div>
+        <button class="button" id="outline" [routerLink]="['/account/search']">Volver al Listado</button>
+    </div>
+    <div class="cdetails" *ngIf="professional">
+        <div class="container1">
+            <img [src]="profileImage" alt="{{ professional.name }}" />
+        </div>
+        <div class="container2">
+            <h1 class="tname">{{ professional.name }}</h1>
+            <label>
+                Precio:
+                <p>{{ professional.price}}€/Hora</p>
+            </label>
+            <label>
+                Biografía:
+                <p>{{ professional.bio }}</p>
+            </label>
+            <label>
+                Especialidad:
+                <p> {{ professional.specialty }}</p>
+            </label>
+        </div>
+    </div>
+    <div class="cselect" *ngIf="professional">
+        <div class="datepick">
+            <label>Selecciona una fecha:</label>
+          <ngb-datepicker #dp [(ngModel)]="model" (ngModelChange)="onDateChange()"></ngb-datepicker>
+        </div>
+        <div class="timepick">
+          <label for="startTime">Hora Inicio:</label>
+          <select class="form-select" id="startTime" [(ngModel)]="startTime" (change)="updateSelection()">
+            <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+          </select>
+          <label for="duration">Duración (Horas):</label>
+          <select class="form-select" id="duration" [(ngModel)]="duration" (change)="updateSelection()">
+            <option *ngFor="let d of [1, 2, 3, 4]" [value]="d">{{ d }}</option>
+          </select>
+        </div>
+    </div>
+    <div class="tselection" *ngIf="selectedDate">
+        <p>Tu Selección:</p>
+        <div class="cselection">
+            <label>Fecha Seleccionada: <p>{{ selectedDate }}</p></label>
+            <label>Hora Inicio: <p>{{ startTime }}</p></label>
+            <label>Hora de Fin: <p>{{ endTime }}</p></label>
+            <label>Precio estimado: <p>{{ estimatedPrice }}€</p></label>
+        </div>
+        <button class="button" id="solid" [disabled]="!endTime" (click)="requestAppointment()">Solicitar Cita</button>
+    </div>
+
+    <div *ngIf="alertError" class="alert alert-danger mb-0" role="alert">
+        {{alertError}}
+    </div>
+</body>
+<footer>
+    <app-footer></app-footer>
+</footer>

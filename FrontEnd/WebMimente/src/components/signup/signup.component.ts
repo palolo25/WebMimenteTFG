@@ -3,7 +3,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
-import { SupabaseService } from '../../app/supabase.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-signup',

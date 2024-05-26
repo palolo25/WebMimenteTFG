@@ -1,7 +1,6 @@
 .ctitle{
     background-color: var(--lightblue);
     padding: 2rem;
-
 }
 h1{
     font-family: var(--title-font-family);
@@ -72,6 +71,7 @@ p{
     min-height: 352px;
     max-width: 300px;
     max-height: 400px;
+    border-radius: inherit;
   }
   
   .info {
