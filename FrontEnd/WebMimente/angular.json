@@ -16,6 +16,7 @@
             "outputPath": "dist/web-mimente",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "localize": ["es-ES"],
             "polyfills": [
               "zone.js"
             ],

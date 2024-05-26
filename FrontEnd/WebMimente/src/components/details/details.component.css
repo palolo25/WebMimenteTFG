@@ -25,7 +25,7 @@ label{
     font-family: var(--subtitle-font-family);
     font-weight: 500;
 }
-.cdetails{
+.cdetails,.cselect,.cselection{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -35,29 +35,68 @@ label{
     justify-content: center;
     align-items: flex-end;
 }
+.cselect{
+    align-items: flex-start;
+}
+.tselection{
+    background-color: var(--lightblue);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 1vh;
+    padding: 2vh 16vh;
+}
+.tselection p{
+    color: var(--brandgreen);
+    font-family: var(--title-font-family);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.cselection{
+    align-items: flex-start;
+    gap: 6vh;
+    border-style: solid;
+    border-color: var(--brandgreen);
+    border-radius: 2ch;
+}
 .container1 img{
     border-radius: 2ch;
 }
 .container2{
     max-width: 50%;
 }
+.datepick,.timepick{
+    display: flex;
+    gap: 2vh;
+}
 
-.button-outline {
+.button{
     font-family: "Spline Sans", sans-serif;
     border-radius: 1ch;
     background-color: var(--lightblue);
     padding: 8px 16px;
     position: relative;
-    border-style: solid;
-    border-color: var(--brandgreen);
+
     font-size: 1rem;
     transition: 0.5s;
     display: flex;
     flex-wrap: wrap;
 }
-.button-outline:hover{
+.button:hover{
     cursor: pointer;
     box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
     transition: 0.5s;
     transform: translateY(-0.25em);
+}
+#outline{
+    border-style: solid;
+    border-color: var(--brandgreen);
+    background-color: var(--lightblue);
+}
+#solid{
+    border-style: none;
+    background-color: var(--brandgreen);
+    color: white;
 }
