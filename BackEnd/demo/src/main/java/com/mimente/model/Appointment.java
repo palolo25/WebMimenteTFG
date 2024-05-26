@@ -28,11 +28,12 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "professional_id")
-	private Professional professional;
+	private User professional;
 
+	
 	private Date date;
 	private Time time;
 
