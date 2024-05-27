@@ -1,6 +1,6 @@
 package com.mimente.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 
 import jakarta.persistence.Entity;
@@ -17,8 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "appoinments")
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Appointment {
 
 	@Id
@@ -37,4 +36,29 @@ public class Appointment {
 	private Date date;
 	private Time time;
 
+	
+	public Appointment(User user, User professional, Date date, Time time) {
+		this.user = user;
+		this.professional = professional;
+		this.date = date;
+		this.time = time;
+	}
+
+
+	public Appointment(Long id, User user, User professional, Date date, Time time) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.professional = professional;
+		this.date = date;
+		this.time = time;
+	}
+
+
+	public Appointment() {
+		super();
+	}
+	
+	
+	
 }

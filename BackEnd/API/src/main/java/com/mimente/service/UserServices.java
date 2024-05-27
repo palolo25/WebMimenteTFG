@@ -1,12 +1,16 @@
 package com.mimente.service;
 
-import java.util.List;
+
+
+import java.time.LocalDateTime;
+
+import org.springframework.data.domain.Page;
 
 import com.mimente.model.User;
 
 public interface UserServices {
 
-	void signUp(String name, String email, String password, boolean isProfessional);
+	void signUp(String name, String email, String password, boolean isProfessional) throws Exception;
 
 	boolean signIn(String email, String pasword);
 
@@ -17,6 +21,8 @@ public interface UserServices {
 
 	User getById(String email);
 
-	List<User> find(Float price, String name, String speciality, String orderBy, int limit, int offset);
+	Page<User>  find(Float price, String name, String speciality, String orderBy, int limit, int offset);
+	
+	void createAppointment(String emailUser, String emailProfessional, LocalDateTime date);
 
 }
