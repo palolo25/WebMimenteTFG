@@ -3,9 +3,6 @@
     display: flex;
     flex-direction: column;
 }
-.cappointments{
-    background-color: var(--lightblue);
-}
 .cimgavatar {
     position: relative;
 }
@@ -37,7 +34,13 @@ img{
     display: flex;
     flex-direction: column;
     gap: 10%;
-    margin: 10%
+    margin: 4% 10% 6% 10%;
+}
+.cuserappointments{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    margin: 0% 10% 5% 10%;
 }
 .cuserprofile,.cprofprofile{
     display: flex;

@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { specialties } from '../../app/constants/specialties';
+import { AppointmentsComponent } from '../appointments/appointments.component';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AccnavbarComponent,FooterComponent,CommonModule,FormsModule],
+  imports: [AccnavbarComponent,FooterComponent,CommonModule,FormsModule,AppointmentsComponent],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })

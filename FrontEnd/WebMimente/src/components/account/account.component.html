@@ -63,13 +63,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
-    <div class="cappointments">
-        <div class="table">
-            <p>Table</p>
+    
+        <div class="cuserappointments">
+            <div class="cheader">
+                <h1>Mis citas</h1>
+                <p> Aquí podrás ver y gestionar todas las citas asociadas a tu cuenta</p>
+            </div>
+            <app-appointments></app-appointments>
         </div>
     </div>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
       <!-- Edit Photo Modal -->
     <div class="modal fade" id="editPhotoModal" tabindex="-1" aria-labelledby="editPhotoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
