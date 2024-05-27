@@ -277,18 +277,56 @@ export class SupabaseService {
     }
   }
 
-  async getProfAppointment(idProf: string){
-    const { data, error } = await this.supabase
-    .from('appointments')
-    .select(`
-      *,
-      professionals (name)`)
-    .eq('id_prof', idProf);
+  async confirmAppointment(appointmentId: string){
+    const { error } = await this.supabase
+      .from('appointments')
+      .update({ state: 'Confirmada' })
+      .eq('id', appointmentId);
 
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+  }
+
+  async getProfAppointment(idProf: string): Promise<Appointment[]> {
+    const { data, error } = await this.supabase
+      .from('appointments')
+      .select(`
+        created_at,
+        id,
+        id_user,
+        id_prof,
+        date,
+        start_time,
+        end_time,
+        state,
+        est_price,
+        users (
+          name,
+          email,
+          imgprofile
+        )
+      `)
+      .eq('id_prof', idProf);
+  
+    if (error) {
+      throw new Error(error.message);
+    }
+  
+    return data.map((appointment: any) => ({
+      id: appointment.id,
+      id_user: appointment.id_user,
+      id_prof: appointment.id_prof,
+      date: appointment.date,
+      start_time: appointment.start_time,
+      end_time: appointment.end_time,
+      price: appointment.est_price,
+      state: appointment.state,
+      userEmail: appointment.users.email,
+      userName: appointment.users.name,
+      imgUser: appointment.users.imgprofile,
+      created: appointment.created_at,
+    }));
   }
 
 }

@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { specialties } from '../../app/constants/specialties';
 import { AppointmentsComponent } from '../appointments/appointments.component';
+import { Router,RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AccnavbarComponent,FooterComponent,CommonModule,FormsModule,AppointmentsComponent],
+  imports: [AccnavbarComponent,FooterComponent,CommonModule,FormsModule,AppointmentsComponent,RouterModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
@@ -43,10 +44,14 @@ export class AccountComponent {
   isProfessional: boolean = false;
 
   
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {}
 
   async ngOnInit() {
     this.isLoading = true;
+    const { user } = await this.supabaseService.getUser();
+    if (!user) {
+      this.router.navigate(['/login']);
+    }
     try {
       await this.loadUserProfile();
       if (this.isProfessional) {

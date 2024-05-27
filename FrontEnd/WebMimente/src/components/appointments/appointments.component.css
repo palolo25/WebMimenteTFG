@@ -70,5 +70,15 @@
     border-style: none;
     background-color: var(--red);
     color: white;
-
+}
+#confirm{
+    border-style: none;
+    background-color: var(--brandgreen);
+    color: white;
+}
+#action{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
 }
