@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { Appointment } from '../models/appointment';
 
 @Injectable({
   providedIn: 'root'
@@ -223,6 +224,68 @@ export class SupabaseService {
     .insert([appointment]);
 
     if(error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
+
+  async getUserAppointment(idUser: string): Promise<Appointment[]> {
+    const { data, error } = await this.supabase
+      .from('appointments')
+      .select(`
+        id,
+        id_user,
+        id_prof,
+        date,
+        start_time,
+        end_time,
+        state,
+        est_price,
+        professionals (
+          name,
+          users (imgprofile)
+        )
+      `)
+      .eq('id_user', idUser);
+  
+    if (error) {
+      throw new Error(error.message);
+    }
+  
+    return data.map((appointment: any) => ({
+      id: appointment.id,
+      id_user: appointment.id_user,
+      id_prof: appointment.id_prof,
+      date: appointment.date,
+      start_time: appointment.start_time,
+      end_time: appointment.end_time,
+      price: appointment.est_price,
+      state: appointment.state,
+      profName: appointment.professionals.name,
+      imgProf: appointment.professionals.users.imgprofile,
+    }));
+  }
+  
+  async cancelAppointment(appointmentId: string){
+    const { error } = await this.supabase
+      .from('appointments')
+      .update({ state: 'Cancelada' })
+      .eq('id', appointmentId);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async getProfAppointment(idProf: string){
+    const { data, error } = await this.supabase
+    .from('appointments')
+    .select(`
+      *,
+      professionals (name)`)
+    .eq('id_prof', idProf);
+
+    if (error) {
       throw new Error(error.message);
     }
     return data;

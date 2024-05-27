@@ -1,0 +1,74 @@
+.modal-body{
+    gap: 2%;
+}
+.title,.subtitle{
+    font-family: var(--subtitle-font-family);
+    font-size: var(--smalltext-font-size);
+}
+.title{
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.subtitle{
+    font-weight: 400;
+    font-size: 1rem;;
+}
+.ctable{
+    margin-top: 2rem;
+    border-style: solid;
+    border-color: var(--brandgreen);
+    border-radius: 0.3em;
+    border-width: 0.15em;
+}
+#id-label{
+    color: var(--brandgreen);
+}
+
+.label {
+    padding: 0.2em 0.5em;
+    border-radius: 0.3em;
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
+.Solicitada {
+    background-color: var(--orange);
+
+}
+  
+.Confirmada {
+    background-color: var(--brandgreen)
+}
+
+.Cancelada {
+    background-color: var(--red);
+}
+
+.button{
+    font-family: "Spline Sans", sans-serif;
+    border-radius: 1ch;
+    padding: 8px 16px;
+    position: relative;
+    background: none;
+    font-size: 1rem;
+    transition: 0.3s;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.button:hover{
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    transition: 0.3s;
+    transform: translateY(-0.25em);
+}
+#outline{
+    border-style: solid;
+    border-color: var(--brandgreen);
+}
+#cancel{
+    border-style: none;
+    background-color: var(--red);
+    color: white;
+
+}

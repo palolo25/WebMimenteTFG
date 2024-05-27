@@ -1,1 +1,115 @@
-
+<div class="ctable" *ngIf="!isProfessional">
+    <p-table #dt1 [value]="appointments" styleClass="p-datatable-striped" [paginator]="true"
+    [rows]="5" sortField="date" [sortOrder]="1" [rowHover]="true" [globalFilterFields]="['profName', 'state']"
+    [tableStyle]="{ 'min-width': '20rem'}">
+    
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <p-iconField iconPosition="left" class="ml-auto">
+                    <p-inputIcon>
+                        <i class="pi pi-search"></i>
+                    </p-inputIcon>
+                    <input 
+                        pInputText 
+                        type="text" 
+                        (input)="filterTable($event, dt1)" 
+                        placeholder="Busca por Nombre o Estado" />
+                </p-iconField>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="profName">
+                    Profesional <p-sortIcon field="profName" />
+                </th>
+                <th pSortableColumn="date">
+                    Fecha <p-sortIcon field="date" />
+                </th>
+                <th pSortableColumn="start_time">
+                    Hora Inicio <p-sortIcon field="start_time" />
+                </th>
+                <th pSortableColumn="end_time">
+                    Hora Fin <p-sortIcon field="end_time" />
+                </th>
+                <th pSortableColumn="state">
+                    Estado <p-sortIcon field="state" />
+                </th>
+                <th>Gestionar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-appointment>
+            <tr>
+                <td><img [src]="appointment.imgProf" [alt]="appointment.profName" style="width: 40px; height: 40px; border-radius: 50%;" />
+                    {{ appointment.profName }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.start_time }}</td>
+                <td>{{ appointment.end_time }}</td>
+                <td><span [ngClass]="appointment.state" class="label">
+                    {{ appointment.state }}
+                </span>
+                </td>
+                <td><button class="button" id="outline" type="button" href="javascript:void(0)" (click)="openAppointmentModal(appointment)">Detalles</button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div class="ctable" *ngIf="isProfessional">
+    <p>Professional</p>
+</div>
+<!-- Appointment Details Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointmentModalLabel">Ver Detalle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="title mb-1">Id Cita:
+                    <label id="id-label" class="subtitle">{{ selectedAppointment?.id }}</label>
+                  </label>
+                  <br>
+                <label class="title mb-1">Profesional:
+                  <label class="subtitle">{{ selectedAppointment?.profName }}</label>
+                </label>
+                <br>
+                <label class="title">Fecha:
+                  <label class="subtitle">{{ selectedAppointment?.date }}</label>
+                </label>
+                <br>
+                <label class="title mb-1">Hora Inicio:
+                  <label class="subtitle">{{ selectedAppointment?.start_time }}</label>
+                </label>
+                <br>
+                <label class="title mb-1">Hora Fin:
+                  <label class="subtitle">{{ selectedAppointment?.end_time }}</label>
+                </label>
+                <br>
+                <label class="title mb-1">Precio:
+                  <label class="subtitle">{{ selectedAppointment?.price }}</label>
+                </label>
+                <br>
+                <label class="title mb-1">Estado:
+                  <label [ngClass]="selectedAppointment?.state">{{ selectedAppointment?.state }}</label>
+                </label>
+                <br>
+                <div *ngIf="selectedAppointment?.state == 'Solicitada'" class="alert alert-info" role="alert"> Espera la confirmación del profesional</div>
+                <div *ngIf="selectedAppointment?.state == 'Cancelada'" class="alert alert-warning" role="alert"> El profesional puede enviarte un email para reorganizar la cita</div>
+              <label *ngIf="selectedAppointment?.state !='Cancelada'" class="title mb-1">Cancelar Cita:
+                <div>
+                    <button class="button" id="cancel" (click)="cancelAppointment()">Cancelar</button>
+                    <label class="subtitle">¡Acción irrevocable!</label>
+                </div>
+              </label>
+              <div *ngIf="alertError" class="alert alert-danger" role="alert">
+                {{ alertError }}
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="outline" class="button" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="isLoading" class="spinner-border" role="status"></div>
+<div *ngIf="modalIsLoading" class="spinner-grow" role="status"></div>
