@@ -8,11 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Modal } from 'bootstrap';
 import { Appointment } from '../../models/appointment';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-appointments',
   standalone: true,
-  imports: [CommonModule,TableModule,IconFieldModule,InputIconModule,FormsModule,InputTextModule],
+  imports: [CommonModule,TableModule,IconFieldModule,InputIconModule,FormsModule,InputTextModule,ButtonModule],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css'
 })
@@ -23,6 +24,7 @@ export class AppointmentsComponent {
   appointments:any[] = [];
   modalIsLoading: boolean = false;
   alertError: string = '';
+  alertSuccess: string = '';
   selectedAppointment: Appointment | null = null;
 
   constructor(private supabaseService: SupabaseService){}
@@ -60,7 +62,11 @@ export class AppointmentsComponent {
   }
 
   async loadProfAppointments(userId:string){
-
+    try{
+      this.appointments = await this.supabaseService.getProfAppointment(userId);
+    } catch (error: any) {
+      window.alert(`Error al cargar citas: ${error.message}`);
+    }
   }
 
   filterTable(event: Event, dt: any) {
@@ -90,9 +96,22 @@ export class AppointmentsComponent {
       try {
         await this.supabaseService.cancelAppointment(this.selectedAppointment.id);
         this.selectedAppointment.state = 'Cancelada';
+        this.alertSuccess = '';
         this.alertError = 'Cita cancelada con éxito';
       } catch (error: any) {
         this.alertError = `Error al cancelar cita: ${error.message}`;
+      }
+    }
+  }
+
+  async confirmAppointment() {
+    if (this.selectedAppointment) {
+      try {
+        await this.supabaseService.confirmAppointment(this.selectedAppointment.id);
+        this.selectedAppointment.state = 'Confirmada';
+        this.alertSuccess = 'Cita confirmada con éxito';
+      } catch (error: any) {
+        this.alertError = `Error al confirmar cita: ${error.message}`;
       }
     }
   }

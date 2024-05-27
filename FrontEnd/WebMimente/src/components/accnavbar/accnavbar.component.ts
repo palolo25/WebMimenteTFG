@@ -23,7 +23,7 @@ export class AccnavbarComponent {
       if (user) {
         const profile = await this.supabaseService.getUserProfile(user.id);
         if (profile){
-          this.isProfessional = profile.professional ?? false;
+          this.isProfessional = profile.professional;
         } else {
           console.error(`Error al buscar perfil: ${user.id}`);
         }

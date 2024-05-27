@@ -31,7 +31,12 @@
             </label>
         </div>
     </div>
-    <div class="cselect" *ngIf="professional">
+    <div *ngIf="(isProfessional || !session)">
+        <div class="alert alert-danger mb-0" role="alert">
+            Regístrate como usuario e Inicia sesión para concertar una sesión con este y ¡cientos de profesionales más!
+        </div>
+    </div>
+    <div class="cselect" *ngIf="professional && (!isProfessional || !session)">
         <div class="datepick">
             <label>Selecciona una fecha:</label>
           <ngb-datepicker #dp [(ngModel)]="model" (ngModelChange)="onDateChange()"></ngb-datepicker>

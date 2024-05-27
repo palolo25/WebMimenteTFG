@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AccnavbarComponent } from '../accnavbar/accnavbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,10 +16,12 @@ import { availableTimes, extendedTimes } from '../../app/constants/times';
   styleUrl: './details.component.css'
 })
 export class DetailsComponent {
+  isProfessional: boolean = false;
   professional: any;
   supabaseUrl: string = 'https://sxdevenwiplzwyspjbxj.supabase.co/storage/v1/object/public/userimg';
   profileImage: string = '';
   alertError: string | null = null;
+  session: boolean = false;
   //Selection
   model: any;
   startTime: string | null = null;
@@ -30,9 +32,17 @@ export class DetailsComponent {
   availableTimes: string[] =  availableTimes;
   extendedTimes: string[] = extendedTimes;
 
-  constructor(private route: ActivatedRoute, private supabaseService: SupabaseService) {}
+  constructor(private route: ActivatedRoute, private supabaseService: SupabaseService, private router: Router) {}
 
   async ngOnInit(){
+    const { user } = await this.supabaseService.getUser();
+    if (user) {
+      this.session = true;
+      const profile = await this.supabaseService.getUserProfile(user.id);
+      if (profile){
+        this.isProfessional = profile.professional;
+      }
+    } else {this.session = false;}
     const idProfile = this.route.snapshot.queryParamMap.get('id_profile');
     if(idProfile) {
       try{

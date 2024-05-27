@@ -7,10 +7,11 @@ export interface Appointment {
     end_time: string | Date;
     price: number;
     state: string;
+    created?: number;
     profName?: string;
     userName?: string;
     userEmail?: string;
-    idProf?:number;
+    idProfile?:number;
     imgProf?: string;
     imgUser?: string;
   }
