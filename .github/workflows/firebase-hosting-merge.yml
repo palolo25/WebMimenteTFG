@@ -19,5 +19,3 @@ jobs:
           channelId: live
           projectId: mimente-e3582
           entryPoint: "FrontEnd/WebMimente/"
-        env:
-            FIREBASE_CLI_EXPERIMENTS: webframeworks
