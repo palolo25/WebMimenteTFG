@@ -23,9 +23,35 @@
 }
 form{
     height: auto;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1vh;
     padding-bottom: 5%;
+}
+button.primary{
+    background-color: var(--brandgreen);
+    color: var(--lightblue);
+}
+button.secondary{
+    background-color: var(--middleblue);
+    color: black;
+}
+button{
+    font-family: "Spline Sans", sans-serif;
+    border-radius: 1ch;
+    padding: 8px 16px;
+    position: relative;
+    border-style: none;
+    font-size: 1rem;
+    transition: 0.5s;
+    display: flex;
+    flex-wrap: wrap;
+}
+button:hover{
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    transition: 0.5s;
+    transform: translateY(-0.25em);
 }

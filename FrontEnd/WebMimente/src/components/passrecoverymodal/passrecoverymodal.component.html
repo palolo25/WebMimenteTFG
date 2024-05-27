@@ -1,0 +1,28 @@
+<div class="modal fade" id="passwordRecoveryModal" tabindex="-1" aria-labelledby="passwordRecoveryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passwordRecoveryModalLabel">Recuperar Contraseña</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="sendRecoveryEmail()">
+            <div class="mb-3">
+              <label for="InputEmail" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+              <small class="form-text text-muted">Si no recuerdas con qué email te registraste, contáctanos</small>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Enviar Email</button>
+            </div>
+            <div *ngIf="alertsuccess" class="alert alert-success" role="alert">
+                {{ alertsuccess }}
+            </div>
+            <div *ngIf="alerterror" class="alert alert-danger" role="alert">
+                {{ alerterror }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

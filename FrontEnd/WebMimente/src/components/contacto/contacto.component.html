@@ -4,6 +4,52 @@
 </head>
 <body>
     <app-navbar></app-navbar>
-    
+    <div class="contacto">
+        <div class="cont-contacto">
+            <div class="centered">
+                <div class="ttitle">Escríbenos un mensaje</div>
+                <div class="subtitle">Completa el formulario de contacto y te responderemos lo antes posible</div>
+                <form class="contact-form">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
+                        <label for="floatingInput">Nombre</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="Email" required>
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Asunto" required>
+                        <label for="floatingInput">Asunto</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Escribe tu mensaje:" id="floatingTextarea" required></textarea>
+                        <label for="floatingInput">Escribe tu mensaje</label>
+                    </div>
+                    <button id="main" type="submit">
+                        Enviar 
+                    </button>
+                </form>
+                <div class="ttitle">Empleo</div>
+                <div class="subtitle">¿Quieres formar parte de nuestro equipo?</div>
+                <div class="subtitle">Encuentra todos los puestos disponibles en nuestro portal de empleo:</div>
+                <a href="https://www.linkedin.com"><button id="main">Visitar Portal Empleo</button></a>
+            </div>
+            <div class="centered">  
+                <img class="imgjobs" src="assets/img/jobs.svg" />
+            </div>
+            <div class="centered">
+                <div class="ttitle">Encuéntranos en redes</div>
+                <div class="subtitle mb-3">También nos puedes contactar y seguir en nuestras redes sociales:</div>
+                <div class="socials">
+                    <a href="https://www.instagram.com"><img class="imgsocials" src="assets/img/instagram.svg"/></a>
+                    <a href="https://www.facebook.com"><img class="imgsocials" src="assets/img/facebook.svg" /></a>
+                    <a href="https://www.x.com"><img class="imgsocials" src="assets/img/twitter.svg" /></a>
+                    <a href="https://www.youtube.com"><img class="imgsocials" src="assets/img/youtube.svg" /></a>
+                    <a href="https://www.linkedin.com"><img class="imgsocials" src="assets/img/linkedin.svg" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
     <app-footer></app-footer>
 </body>

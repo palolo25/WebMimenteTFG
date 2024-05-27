@@ -1,0 +1,18 @@
+<div class="navbar">
+    <div class="cnavlogo" routerLink="/home">
+        <img class="imglogo" src="assets/img/LogoGrand.svg" alt="Logo Mimente" [routerLink]="['/account']" />
+    </div>
+    <div class="cmenu" *ngIf="!isLoading">
+        <button *ngIf="!isProfessional" class="button" id="appointment" type="button" [routerLink]="['/account/search']">
+            Concertar Cita
+        </button>
+        <button class="button" id="account" type="button" [routerLink]="['/account']">
+            Mi Cuenta
+        </button>
+        <button class="button" id="logout" type="button" (click)="logout()">
+            Cerrar Sesión
+        </button>
+    </div>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+</div>
+
