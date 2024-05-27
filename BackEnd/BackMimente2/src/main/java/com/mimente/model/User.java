@@ -29,4 +29,9 @@ public class User {
 		this.password = password;
 		this.isProfessional = isProfessional;
 	}
+
+	public User() {
+		super();
+	}
+	
 }
