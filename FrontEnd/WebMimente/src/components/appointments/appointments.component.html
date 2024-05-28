@@ -1,6 +1,6 @@
 <div class="ctable" *ngIf="!isProfessional">
-    <p-table #dt1 [value]="appointments" styleClass="p-datatable-striped" [paginator]="true"
-    [rows]="5" sortField="date" [sortOrder]="1" [rowHover]="true" [globalFilterFields]="['profName', 'state']"
+    <p-table #dt1 [value]="appointments" styleClass="p-datatable-striped" [paginator]="true" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {last} registros de un total de {totalRecords}"
+    [rows]="5" [rowsPerPageOptions]="[5, 10, 30]" sortField="date" [sortOrder]="1" [rowHover]="true" [globalFilterFields]="['profName', 'state','date']"
     [tableStyle]="{ 'min-width': '20rem'}">
     
         <ng-template pTemplate="caption">
@@ -51,11 +51,16 @@
                 <td><button class="button" id="outline" type="button" href="javascript:void(0)" (click)="openAppointmentModal(appointment)">Detalles</button></td>
             </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6">No se encontraron citas</td>
+            </tr>
+        </ng-template>
     </p-table>
 </div>
 <div class="ctable" *ngIf="isProfessional">
-    <p-table #dt2 [value]="appointments" styleClass="p-datatable-striped" [paginator]="true"
-    [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" sortField="date" sortMode="multiple" [sortOrder]="1" [rowHover]="true" [globalFilterFields]="['profName', 'state']"
+    <p-table #dt2 [value]="appointments" styleClass="p-datatable-striped" [paginator]="true" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {last} registros de un total de {totalRecords}"
+    [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" sortField="date" sortMode="multiple" [sortOrder]="1" [rowHover]="true" [globalFilterFields]="['userName', 'state', 'date', 'start_time','price']"
     [tableStyle]="{ 'min-width': '20rem'}">
     
         <ng-template pTemplate="caption">
@@ -68,7 +73,7 @@
                         pInputText 
                         type="text" 
                         (input)="filterTable($event, dt2)" 
-                        placeholder="Busca por Nombre o Estado" />
+                        placeholder="Busca por palabra clave" />
                 </p-iconField>
             </div>
         </ng-template>
@@ -108,6 +113,11 @@
                 </span>
                 </td>
                 <td><button class="button" id="outline" type="button" href="javascript:void(0)" (click)="openAppointmentModal(appointment)">Detalles</button></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No se encontraron citas</td>
             </tr>
         </ng-template>
     </p-table>
@@ -162,7 +172,7 @@
                 <div *ngIf="selectedAppointment?.state == 'Cancelada' && isProfessional" class="alert alert-warning" role="alert"> Recuerda enviar un email al paciente para reorganizar la cita si procede</div>
                 <div id="action">
                     <label *ngIf="selectedAppointment?.state != 'Cancelada'" class="title mb-1">
-                        <div>
+                        <div class="cancel-container">
                             <button class="button" id="cancel" (click)="cancelAppointment()">Cancelar</button>
                             <label class="subtitle">¡Acción irrevocable!</label>
                         </div>
