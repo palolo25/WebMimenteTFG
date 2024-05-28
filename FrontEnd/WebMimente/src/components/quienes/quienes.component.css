@@ -1,8 +1,15 @@
+.body{
+    background-color: var(--lightblue);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
 .mission{
     background-color: var(--lightblue);
     display: flex;
     padding: 5%;
     gap: 3%;
+    max-width: 80%;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
@@ -21,22 +28,17 @@
     font-weight: var(--title-font-weight);
     padding-bottom: 5%;
 }
-.cmissions{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+
 .cheroe{
     display: flex;
     flex-direction: column;
-    max-width: 30%;
     gap: 3rem;
 }
 .imgheroe{
     max-height: 400px;
 
 }
-.tmission,.tsubtitle{
+.tmission,.tmsubtitle{
     color: black;
     font-family: var(--subtitle-font-family);
     font-size: var(--subtitle-font-size);
@@ -53,9 +55,9 @@
     align-items: center;
     padding-bottom: 5%;
 }
-.cteam-bios{
-    display: flex;
-    flex-direction: row;
+.cteam-bios,.cmissions{
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
     gap: 3rem;
 }
 .cteam-bio{
@@ -82,11 +84,18 @@
 .tname{
     color: black;
     font-family: var(--subtitle-font-family);
-    font-size: var(--subtitle-font-size);
+    font-size: 1.5rem;
     font-weight: 700;
+}
+.tsubtitle{
+    font-family: var(--subtitle-font-family);
+    font-size: 1rem;
 }
 .tbio{
     color: black;
     font-family: var(--smalltext-font-family);
-    font-size: var(--smalltext-font-size);
+    font-size: 1.8rem;
+}
+.imgteam{
+    border-radius: 50%;
 }

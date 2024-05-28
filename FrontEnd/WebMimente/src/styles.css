@@ -17,7 +17,7 @@
     --links-font-weight: 400;
     --links-font-style: normal;
     --largetitle-font-family: EB Garamond, sans-serif;
-    --largetitle-font-size: 7rem;
+    --largetitle-font-size: 6rem;
     --largetitle-line-height: normal;
     --largetitle-font-weight: 700;
     --largetitle-font-style: normal;
@@ -27,12 +27,12 @@
     --title-font-weight: 700;
     --title-font-style: normal;
     --subtitle-font-family: Spline Sans, sans-serif;
-    --subtitle-font-size: 2.5rem;
+    --subtitle-font-size: 2rem;
     --subtitle-line-height: normal;
     --subtitle-font-weight: 400;
     --subtitle-font-style: normal;
     --smalltext-font-family: Spline Sans, sans-serif;
-    --smalltext-font-size: 2rem;
+    --smalltext-font-size: 1.6rem;
     --smalltext-line-height: 150%;
     --smalltext-font-weight: 400;
     --smalltext-font-style: normal;

@@ -7,28 +7,29 @@
 <body>
     <app-navbar></app-navbar> 
     <div class="home">
-        <div class="inicio">
-            <div class="cimg-a">
-                <div class="imgbackrectangle">
-                    <div class="ctext" style="background-image:url(assets/img/backrectangle.svg)">
-                        <div class="ttitle">
-                            Empieza tu viaje a una vida más feliz
-                        </div>
-                        <div class="tsubtitle">
-                            Conecta con cientos de profesionales que te ayudarán a llevar una vida
-                            en plenitud con tu salud mental, busca y encuentra el profesional más
-                            adecuado a tus necesidades y contacta de la forma prefieras
-                        </div>
-                        <div class="cbuttons">
-                            <button class="button" id="main">Empezar</button>
-                            <button class="button" id="secondary">Leer más</button>
-                        </div>
+        <div class="home-sec3">
+            <div class="cimg-3b">
+                <div class="ctext3">
+                    <div class="ttitle">
+                        Empieza tu viaje a una vida más feliz
                     </div>
-                </div>
-                <img class="imgtree" src="assets/img/tree.svg" />
-                <div class="cimg-b">
-                    <img class="imgelders" src="assets/img/elders.svg" />
-                </div>
+                    <div class="tsubtitle2">
+                        Conecta con cientos de profesionales que te ayudarán a llevar una vida
+                            en plenitud con tu salud mental, busca y encuentra el profesional más
+                            adecuado a tus necesidades y contacta de la forma prefieras.
+                        <br />
+                        Observa y gestionas tus citas desde un solo lugar
+                        <br />
+                        Contacta directamente con tu profesional o paciente
+                    </div>
+                    <div class="cbuttons">
+                        <button class="button" id="main" [routerLink]="['/login']">Empezar</button>
+                        <button class="button" id="secondary" [routerLink]="['/servicios']">Leer más</button>
+                    </div>
+                </div>  
+            </div>
+            <div class="cimg-3a">
+                <img class="imgbackeveryone" src="assets/img/eldersback.svg" />
             </div>
         </div>
         <div class="home-sec2">
@@ -50,7 +51,7 @@
                         Escoge el profesional que prefieras y pide cita directamente desde la
                         aplicación.
                     </div>
-                    <button class="button" id="main">Empezar</button>
+                    <button class="button" id="main" [routerLink]="['/login']">Empezar</button>
                 </div> 
             </div>
         </div>
@@ -67,9 +68,9 @@
                         <br />
                         Observa y gestionas tus citas desde un solo lugar
                         <br />
-                        Contacta directamente con tu profesional o paciente
+                        Selecciona el registro como profesional y empieza ya
                     </div>
-                    <button class="button" id="main">Empezar como Profesional</button>
+                    <button class="button" id="main" [routerLink]="['/signup']">Empezar como Profesional</button>
                 </div>  
             </div>
             <div class="cimg-3a">
