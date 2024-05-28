@@ -39,7 +39,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-appointment>
             <tr>
-                <td><img [src]="appointment.imgProf" [alt]="appointment.profName" style="width: 40px; height: 40px; border-radius: 50%;" />
+                <td><img [src]="appointment.imgProf" [alt]="appointment.profName" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
                     {{ appointment.profName }}</td>
                 <td>{{ appointment.date }}</td>
                 <td>{{ appointment.start_time }}</td>
@@ -102,7 +102,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-appointment>
             <tr>
-                <td><img [src]="appointment.imgUser" [alt]="appointment.profName" style="width: 40px; height: 40px; border-radius: 50%;" />
+                <td><img [src]="appointment.imgUser" [alt]="appointment.profName" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
                     {{ appointment.userName }}</td>
                 <td>{{ appointment.date }}</td>
                 <td>{{ appointment.start_time }}</td>

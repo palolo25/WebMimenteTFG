@@ -123,7 +123,8 @@ export class DetailsComponent {
             end_time: this.endTime,
             est_price: this.estimatedPrice
           });
-          window.alert('Cita Solicitada con éxito');
+          window.alert('Cita Solicitada con éxito. Espere la respuesta del profesional');
+          this.router.navigate(['/account']);
         }
       }catch (error: any){
         this.alertError = `Error al solicitar la cita: ${error.message}`;
