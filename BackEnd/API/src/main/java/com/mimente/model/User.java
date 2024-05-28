@@ -1,10 +1,11 @@
 package com.mimente.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -28,11 +29,11 @@ public class User {
 	private boolean isProfessional;
 	private boolean published = false;
 	
-	@OneToMany(mappedBy = "professional")
-	private List<Appointment> appointments;
+	@OneToMany(mappedBy = "professional",cascade =CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@OneToMany(mappedBy = "user")
-	private List<Appointment> userApointments; 
+	@OneToMany(mappedBy = "user",cascade =CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Appointment> userApointments = new ArrayList<Appointment>();
 
 	public User(String name, String email, String password, boolean isProfessional) {
 		this.name = name;
@@ -134,6 +135,13 @@ public class User {
 		this.userApointments = userApointments;
 	}
 
+	public List<Appointment> appointments(){
+		
+		if(this.isProfessional) {
+			return this.appointments;	
+		}
+		return this.userApointments;
+	}
 	
 	
 }
