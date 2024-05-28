@@ -40,14 +40,13 @@
 }
 #appointment{
   background: var(--orange);
-  
 }
 #account{
   background: var(--brandgreen);
 }
 #logout{
   background: var(--middleblue);
-  color: black;
+
 }
 .button {
   font-family: "Spline Sans", sans-serif;
@@ -56,7 +55,7 @@
   position: relative;
   border-style: none;
   font-size: 1.5rem;
-  color: var(--lightblue);
+  color: black;
   transition: 0.5s;
   display: flex;
   flex-wrap: wrap;

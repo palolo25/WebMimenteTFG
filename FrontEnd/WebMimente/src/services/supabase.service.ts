@@ -63,7 +63,7 @@ export class SupabaseService {
 
   async resetPassword(email: string) {
     const { error } = await this.supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: 'http://localhost:4200/account/newpassword',
+      redirectTo: 'https://mimente-e3582.web.app/account/newpassword',
     });
     if (error) {
       throw error;
@@ -149,7 +149,7 @@ export class SupabaseService {
     }else if (user.email != email){
      const { data, error } = await this.supabase.auth.updateUser({
       email: email},{
-        emailRedirectTo: 'http://localhost:4200/account/newemail',
+        emailRedirectTo: 'https://mimente-e3582.web.app/account/newemail',
       });
       if (error) {
         throw error;

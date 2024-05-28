@@ -128,18 +128,21 @@
                         </div>
                         <div class="mb-3">
                             <label for="editSpecialty" class="form-label">Especialidad:</label>
-                            <select class="form-control" id="editSpecialty" name="editSpecialty" [(ngModel)]="editSpecialty" required>
-                              <option *ngFor="let specialty of specialties" [value]="specialty" name="editSpecialty">{{ specialty }}</option>
+                            <select class="form-control" id="editSpecialty" name="editSpecialty" [value]="specialty" [(ngModel)]="editSpecialty" required>
+                              <option *ngFor="let specialty of specialties"  name="editSpecialty">{{ specialty }}</option>
                             </select>
                             <small>Escoge tu especialidad para ayudar a los pacientes a encontrarte</small>
                         </div>
                         <div class="mb-3">
                             <label for="editActive" class="form-label">Estado del perfil:</label>
-                            <select class="form-control" id="editActive" name="editActive" [(ngModel)]="editActive" required>
+                            <select class="form-control" id="editActive" [value]="active" name="editActive" [(ngModel)]="editActive" required>
                               <option [value]="true">Publicado</option>
                               <option [value]="false">Oculto</option>
                             </select>
                             <small>Indica si deseas publicar tu perfil</small>
+                            <div *ngIf="active == false" class="alert alert-warning" role="alert">
+                                Recuerda elegir una foto de perfil adecuada
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
