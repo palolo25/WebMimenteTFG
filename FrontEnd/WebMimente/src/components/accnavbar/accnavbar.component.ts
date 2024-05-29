@@ -14,6 +14,7 @@ export class AccnavbarComponent {
 
   isProfessional: boolean = false;
   isLoading: boolean = true;
+  professionalId: number = 0;
 
   constructor(private supabaseService: SupabaseService, private router: Router) {}
   
@@ -24,6 +25,10 @@ export class AccnavbarComponent {
         const profile = await this.supabaseService.getUserProfile(user.id);
         if (profile){
           this.isProfessional = profile.professional;
+          if(this.isProfessional){
+            const professional = await this.supabaseService.getProfProfile(user.id);
+            this.professionalId = professional.id_profile
+          }
         } else {
           console.error(`Error al buscar perfil: ${user.id}`);
         }

@@ -6,6 +6,9 @@
         <button *ngIf="!isProfessional" class="button" id="appointment" type="button" [routerLink]="['/account/search']">
             Concertar Cita
         </button>
+        <button *ngIf="isProfessional" class="button" id="appointment" type="button" [routerLink]="['/account/search/details']" [queryParams]="{ id_profile: professionalId }">
+            Mi perfil
+        </button>
         <button class="button" id="account" type="button" [routerLink]="['/account']">
             Mi Cuenta
         </button>

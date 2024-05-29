@@ -103,7 +103,7 @@ export class SupabaseService {
   async getProfProfile(userId: string) {
     const { data, error } = await this.supabase
       .from('professionals')
-      .select('bio, price, active, specialty')
+      .select('bio, price, active, specialty, id_profile')
       .eq('uid', userId)
       .single();
     if (error) {
