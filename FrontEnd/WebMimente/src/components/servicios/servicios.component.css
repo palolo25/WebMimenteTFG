@@ -1,7 +1,7 @@
 .button {
   font-family: "Spline Sans", sans-serif;
-  border-radius: 1.5rem;
-  padding: 2ch;
+  border-radius: 2ch;
+  padding: 18px 24px;
   border-style: none;
   font-size: 1rem;
   transition: 0.5s;
