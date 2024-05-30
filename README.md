@@ -34,6 +34,6 @@ El portal tendrá una portada con toda la información esencial para presentar a
 ## Tecnologías y Herramientas utilizadas
 - **Figma:** Poderosa herramienta de diseño web que se usará para realizar la maquetación y diseño inicial de la interfaz de la página web.
 - **Angular:** Framework basado en Typescript y en Node.js que se utilizará para desarrollar la página web.
-- **Spring Boot:** Framework basado en Java que se utilizará para manejar el back-end de la aplicación.
+- **Supabase:** Plataforma de Backend as a Service (BaaS) que proporciona una base de datos PostgreSQL en tiempo real, autenticación, almacenamiento y APIs generadas automáticamente, facilitando el manejo del back-end de la aplicación.
 - **GitHub:** Es el servicio que se usará para el control de versiones.
 
