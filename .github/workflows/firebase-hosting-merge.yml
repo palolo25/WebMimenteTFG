@@ -11,9 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.1'
+      - name: Install dependencies
+        run: npm install
+        working-directory: FrontEnd/WebMimente
+      - name: Build the project
+        run: npm run build
+        working-directory: FrontEnd/WebMimente
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MIMENTE_E3582 }}
           channelId: live
           projectId: mimente-e3582
+          entryPoint: "FrontEnd/WebMimente/"
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
