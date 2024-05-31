@@ -2,6 +2,7 @@
 ## Trabajo de fin de grado de desarrollo de aplicaciones web
 
 Enlace a la memoria del proyecto: [Memoria](https://docs.google.com/document/d/1xlbxq4W2QZkIO-wqJGntp_NmTwPFQrYTtPU9-vdpk84/edit?usp=sharing)
+Enlace a la página web: [Web](https://mimente-e3582.web.app)
 
 # Proyecto de Fin de Grado
 ## DAW - Unir FP 
